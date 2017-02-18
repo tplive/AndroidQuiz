@@ -1,7 +1,7 @@
 package no.westerberg.androidquiz;
 
 /**
- * Created by Thomas on 18.02.2017.
+ * Created by Eline on 18.02.2017.
  */
 
 public class Player {
