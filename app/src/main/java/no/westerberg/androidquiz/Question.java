@@ -1,10 +1,12 @@
 package no.westerberg.androidquiz;
 
+import java.io.Serializable;
+
 /**
  * Created by Eline on 18.02.2017.
  */
 
-public class Question {
+public class Question implements Serializable {
     private String questionText;
     private String option1, option2, option3, option4;
     private int correct;
@@ -51,5 +53,7 @@ public class Question {
     public int getCorrect() {
         return correct;
     }
+
+
 }
 

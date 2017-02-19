@@ -29,11 +29,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, QuestionActivity.class);
+                i.putExtra("questionBank", questionBank);
                 startActivity(i);
 
-
             }
-        }) ;
+        });
+
+        questionBank[0].getQuestionText();
+
     }
 
 
