@@ -15,14 +15,19 @@ public class QuestionActivity extends AppCompatActivity {
     private CheckedTextView option1, option2, option3, option4;
     private Button buttonNext;
 
-    protected void displayNextQuestion(Question[] questionBank, int ind) {
+    protected int displayNextQuestion(Question[] questionBank, int ind) {
 
         questionTextView = (TextView) findViewById(R.id.questionTextView);
         questionTextView.setText(questionBank[ind].getQuestionText());
         option1 = (CheckedTextView) findViewById(R.id.option1);
+        option1.setText(questionBank[ind].getOption1());
         option2 = (CheckedTextView) findViewById(R.id.option2);
+        option2.setText(questionBank[ind].getOption2());
         option3 = (CheckedTextView) findViewById(R.id.option3);
+        option3.setText(questionBank[ind].getOption3());
         option4 = (CheckedTextView) findViewById(R.id.option4);
+        option4.setText(questionBank[ind].getOption4());
+        return questionBank[ind].getCorrect();
     }
 
 
