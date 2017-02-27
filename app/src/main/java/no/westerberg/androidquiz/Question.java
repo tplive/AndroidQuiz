@@ -54,6 +54,13 @@ public class Question implements Serializable {
         return correct;
     }
 
+    public boolean checkAnswer(int answer) {
+        if (answer = this.correct) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
 

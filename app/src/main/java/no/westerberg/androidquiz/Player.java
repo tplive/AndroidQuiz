@@ -6,6 +6,8 @@ package no.westerberg.androidquiz;
 
 public class Player {
     private int score;
+    private String playerName;
+    private String playerEmail;
 
 
     public Player() {
@@ -18,5 +20,16 @@ public class Player {
 
     public int getScore() {
         return this.score;
+    }
+    public void setPlayerName(String name) {
+        this.playerName = name;
+    }
+
+    public String getPlayerName() {
+        return this.playerName;
+    }
+
+    public void setPlayerEmail(String email) {
+        this.playerEmail = email;
     }
 }
