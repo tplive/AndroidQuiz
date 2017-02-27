@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("questionBank", questionBank);
                 startActivity(i);
 
+                finish();
+
             }
         });
 
