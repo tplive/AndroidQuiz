@@ -55,7 +55,7 @@ public class Question implements Serializable {
     }
 
     public boolean checkAnswer(int answer) {
-        if (answer = this.correct) {
+        if (this.correct == answer) {
             return true;
         }else{
             return false;
