@@ -18,19 +18,24 @@ public class QuestionActivity extends AppCompatActivity {
     private TextView questionTextView;
     private RadioButton option1, option2, option3, option4;
 
-    protected String displayNextQuestion(Question[] questionBank, int ind) {
+    protected void displayNextQuestion(Question[] questionBank, int ind) {
 
-        questionTextView = (TextView) findViewById(R.id.questionTextView);
-        questionTextView.setText(questionBank[ind].getQuestionText());
-        option1 = (RadioButton) findViewById(R.id.btnOption1);
-        option1.setText(questionBank[ind].getOption1());
-        option2 = (RadioButton) findViewById(R.id.btnOption2);
-        option2.setText(questionBank[ind].getOption2());
-        option3 = (RadioButton) findViewById(R.id.btnOption3);
-        option3.setText(questionBank[ind].getOption3());
-        option4 = (RadioButton) findViewById(R.id.btnOption4);
-        option4.setText(questionBank[ind].getOption4());
-        return questionBank[ind].getCorrectText();
+            questionTextView = (TextView) findViewById(R.id.questionTextView);
+            questionTextView.setText(questionBank[ind].getQuestionText());
+            option1 = (RadioButton) findViewById(R.id.btnOption1);
+            option1.setText(questionBank[ind].getOption1());
+            option2 = (RadioButton) findViewById(R.id.btnOption2);
+            option2.setText(questionBank[ind].getOption2());
+            option3 = (RadioButton) findViewById(R.id.btnOption3);
+            option3.setText(questionBank[ind].getOption3());
+            option4 = (RadioButton) findViewById(R.id.btnOption4);
+            option4.setText(questionBank[ind].getOption4());
+    }
+
+    protected CharSequence getPlayerAnswer(View v) {
+        RadioGroup group = (RadioGroup) findViewById(R.id.optionRadioGroup);
+        RadioButton playerAnswer = (RadioButton) findViewById(group.getCheckedRadioButtonId());
+        return playerAnswer.getText();
     }
 
 
@@ -50,37 +55,38 @@ public class QuestionActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             questionIndex = savedInstanceState.getInt(QINDEX, 0);
         }
-            Intent i = getIntent();
-            final Question[] questionBank = (Question[])i.getSerializableExtra("questionBank");
-            final Player player1 = (Player)i.getSerializableExtra("player1");
-            final String correctAnswer = displayNextQuestion(questionBank, questionIndex);
+        Intent i = getIntent();
+        final Question[] questionBank = (Question[]) i.getSerializableExtra("questionBank");
+        final Player player1 = (Player) i.getSerializableExtra("player1");
+        displayNextQuestion(questionBank, questionIndex);
 
-        final Button buttonNext = (Button)findViewById(R.id.buttonNext);
+        final Button buttonNext = (Button) findViewById(R.id.buttonNext);
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RadioGroup group = (RadioGroup)findViewById(R.id.optionRadioGroup);
-                RadioButton playerAnswer = (RadioButton)findViewById(group.getCheckedRadioButtonId());
-                CharSequence answerText = playerAnswer.getText();
-                if (correctAnswer == answerText) {
+                //TODO Make sure it doesn't crash if the player doesn't answer
+                String correctAnswer = questionBank[questionIndex].getCorrectText();
+
+                if (correctAnswer == getPlayerAnswer(view)) {
                     Toast infoToast = Toast.makeText(getApplicationContext(), "Correct, " + player1.getPlayerName(), Toast.LENGTH_SHORT);
                     infoToast.show();
+                    player1.scorePoint();
+                    displayNextQuestion(questionBank, questionIndex++);
 
-                }else{
+                } else {
                     Toast infoToast = Toast.makeText(getApplicationContext(), "Incorrect, " + player1.getPlayerName(), Toast.LENGTH_SHORT);
                     infoToast.show();
+                    displayNextQuestion(questionBank, questionIndex++);
                 }
-
-
-
 
 
             }
         });
-
-
     }
+
+
+
 
 
 }
