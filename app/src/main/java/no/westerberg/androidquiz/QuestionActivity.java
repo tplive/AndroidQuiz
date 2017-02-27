@@ -9,6 +9,7 @@ import android.widget.CheckedTextView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class QuestionActivity extends AppCompatActivity {
     private static final String TAG = "QuestionActivity";
@@ -16,7 +17,6 @@ public class QuestionActivity extends AppCompatActivity {
     private int questionIndex;
     private TextView questionTextView;
     private RadioButton option1, option2, option3, option4;
-    private Button buttonNext;
 
     protected int displayNextQuestion(Question[] questionBank, int ind) {
 
@@ -52,13 +52,20 @@ public class QuestionActivity extends AppCompatActivity {
         }
             Intent i = getIntent();
             Question[] questionBank = (Question[])i.getSerializableExtra("questionBank");
-            displayNextQuestion(questionBank, questionIndex);
+            int correctAnswer = displayNextQuestion(questionBank, questionIndex);
+
+        final Button buttonNext = (Button)findViewById(R.id.buttonNext);
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 RadioGroup group = (RadioGroup)findViewById(R.id.optionRadioGroup);
                 RadioButton playerAnswer = (RadioButton)findViewById(group.getCheckedRadioButtonId());
+                Toast infoToast = Toast.makeText(getApplicationContext(), playerAnswer.getText(), Toast.LENGTH_SHORT);
+                infoToast.show();
+
+
+
             }
         });
 
