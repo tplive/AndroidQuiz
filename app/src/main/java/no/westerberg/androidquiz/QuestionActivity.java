@@ -18,8 +18,9 @@ public class QuestionActivity extends AppCompatActivity {
     private TextView questionTextView;
     private RadioButton option1, option2, option3, option4;
 
-    protected void displayNextQuestion(Question[] questionBank, int ind) {
+    protected void displayNextQuestion(Question[] questionBank, int ind, Player player1) {
 
+        if (ind <= questionBank.length-1) {
             questionTextView = (TextView) findViewById(R.id.questionTextView);
             questionTextView.setText(questionBank[ind].getQuestionText());
             option1 = (RadioButton) findViewById(R.id.btnOption1);
@@ -30,6 +31,15 @@ public class QuestionActivity extends AppCompatActivity {
             option3.setText(questionBank[ind].getOption3());
             option4 = (RadioButton) findViewById(R.id.btnOption4);
             option4.setText(questionBank[ind].getOption4());
+        }else {
+            loadSummaryPage(player1);
+        }
+    }
+
+    private void loadSummaryPage(Player player1) {
+        Intent i = new Intent(QuestionActivity.this, Summary.class);
+        i.putExtra("player1", player1);
+        startActivity(i);
     }
 
     protected CharSequence getPlayerAnswer(View v) {
@@ -58,7 +68,7 @@ public class QuestionActivity extends AppCompatActivity {
         Intent i = getIntent();
         final Question[] questionBank = (Question[]) i.getSerializableExtra("questionBank");
         final Player player1 = (Player) i.getSerializableExtra("player1");
-        displayNextQuestion(questionBank, questionIndex);
+        displayNextQuestion(questionBank, questionIndex, player1);
 
         final Button buttonNext = (Button) findViewById(R.id.buttonNext);
 
@@ -72,13 +82,14 @@ public class QuestionActivity extends AppCompatActivity {
                     Toast infoToast = Toast.makeText(getApplicationContext(), "Correct, " + player1.getPlayerName(), Toast.LENGTH_SHORT);
                     infoToast.show();
                     player1.scorePoint();
-                    displayNextQuestion(questionBank, questionIndex++);
+                    questionIndex++;
 
                 } else {
                     Toast infoToast = Toast.makeText(getApplicationContext(), "Incorrect, " + player1.getPlayerName(), Toast.LENGTH_SHORT);
                     infoToast.show();
-                    displayNextQuestion(questionBank, questionIndex++);
+                    questionIndex++;
                 }
+                displayNextQuestion(questionBank, questionIndex, player1);
 
 
             }
