@@ -54,6 +54,25 @@ public class Question implements Serializable {
         return correct;
     }
 
+    public String getOption(int option) {
+        switch (option) {
+            case 1:
+                return getOption1();
+            case 2:
+                return getOption2();
+            case 3:
+                return getOption3();
+            case 4:
+                return getOption4();
+            default:
+                return "Unknown";
+        }
+    }
+
+    public String getCorrectText() {
+        return getOption(correct);
+    }
+
     public boolean checkAnswer(int answer) {
         if (this.correct == answer) {
             return true;
@@ -66,19 +85,15 @@ public class Question implements Serializable {
         switch (this.getCorrect()) {
             case 1:
                 return this.getOption1() == answer;
-            break;
+
             case 2:
                 return this.getOption2() == answer;
-            break;
             case 3:
                 return this.getOption3() == answer;
-            break;
             case 4:
                 return this.getOption4() == answer;
-            break;
-            case default:
+            default:
                 return false;
-            break;
 
         }
     }
