@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckedTextView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class QuestionActivity extends AppCompatActivity {
@@ -12,20 +13,20 @@ public class QuestionActivity extends AppCompatActivity {
     private static final String QINDEX = "qIndex";
     private int questionIndex;
     private TextView questionTextView;
-    private CheckedTextView option1, option2, option3, option4;
+    private RadioButton option1, option2, option3, option4;
     private Button buttonNext;
 
     protected int displayNextQuestion(Question[] questionBank, int ind) {
 
         questionTextView = (TextView) findViewById(R.id.questionTextView);
         questionTextView.setText(questionBank[ind].getQuestionText());
-        option1 = (CheckedTextView) findViewById(R.id.option1);
+        option1 = (RadioButton) findViewById(R.id.btnOption1);
         option1.setText(questionBank[ind].getOption1());
-        option2 = (CheckedTextView) findViewById(R.id.option2);
+        option2 = (RadioButton) findViewById(R.id.btnOption2);
         option2.setText(questionBank[ind].getOption2());
-        option3 = (CheckedTextView) findViewById(R.id.option3);
+        option3 = (RadioButton) findViewById(R.id.btnOption3);
         option3.setText(questionBank[ind].getOption3());
-        option4 = (CheckedTextView) findViewById(R.id.option4);
+        option4 = (RadioButton) findViewById(R.id.btnOption4);
         option4.setText(questionBank[ind].getOption4());
         return questionBank[ind].getCorrect();
     }
