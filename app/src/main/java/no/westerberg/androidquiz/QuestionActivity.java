@@ -18,7 +18,7 @@ public class QuestionActivity extends AppCompatActivity {
     private TextView questionTextView;
     private RadioButton option1, option2, option3, option4;
 
-    protected int displayNextQuestion(Question[] questionBank, int ind) {
+    protected String displayNextQuestion(Question[] questionBank, int ind) {
 
         questionTextView = (TextView) findViewById(R.id.questionTextView);
         questionTextView.setText(questionBank[ind].getQuestionText());
@@ -30,7 +30,7 @@ public class QuestionActivity extends AppCompatActivity {
         option3.setText(questionBank[ind].getOption3());
         option4 = (RadioButton) findViewById(R.id.btnOption4);
         option4.setText(questionBank[ind].getOption4());
-        return questionBank[ind].getCorrect();
+        return questionBank[ind].getCorrectText();
     }
 
 
@@ -51,8 +51,8 @@ public class QuestionActivity extends AppCompatActivity {
             questionIndex = savedInstanceState.getInt(QINDEX, 0);
         }
             Intent i = getIntent();
-            Question[] questionBank = (Question[])i.getSerializableExtra("questionBank");
-            int correctAnswer = displayNextQuestion(questionBank, questionIndex);
+            final Question[] questionBank = (Question[])i.getSerializableExtra("questionBank");
+            final String correctAnswer = displayNextQuestion(questionBank, questionIndex);
 
         final Button buttonNext = (Button)findViewById(R.id.buttonNext);
 
@@ -61,8 +61,17 @@ public class QuestionActivity extends AppCompatActivity {
             public void onClick(View view) {
                 RadioGroup group = (RadioGroup)findViewById(R.id.optionRadioGroup);
                 RadioButton playerAnswer = (RadioButton)findViewById(group.getCheckedRadioButtonId());
-                Toast infoToast = Toast.makeText(getApplicationContext(), playerAnswer.getText(), Toast.LENGTH_SHORT);
-                infoToast.show();
+                CharSequence answerText = playerAnswer.getText();
+                if (correctAnswer == answerText) {
+                    Toast infoToast = Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT);
+                    infoToast.show();
+
+                }else{
+                    Toast infoToast = Toast.makeText(getApplicationContext(), "Incorrect!", Toast.LENGTH_SHORT);
+                    infoToast.show();
+                }
+
+
 
 
 
