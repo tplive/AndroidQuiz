@@ -9,8 +9,10 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     Player player1 = new Player();
+
     private Button startButton;
 
+    //TODO Get questions from json
     Question[] questionBank = new Question[] {
             new Question("Hva er kodenavnet på Android 5.0?", "Cupcake", "Honeycomb", "Lollipop", "Nougat", 3),
             new Question("Hvem utviklet opprinnelig Android operativsystemet?", "Google", "Apple", "Microsoft", "Android Inc", 4),
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        player1.setPlayerName("Eline"); //TODO Hardcoded name for now
         startButton = (Button)findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        questionBank[0].getQuestionText();
+        //questionBank[0].getQuestionText();
 
     }
 
