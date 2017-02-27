@@ -52,6 +52,7 @@ public class QuestionActivity extends AppCompatActivity {
         }
             Intent i = getIntent();
             final Question[] questionBank = (Question[])i.getSerializableExtra("questionBank");
+            final Player player1 = (Player)i.getSerializableExtra("player1");
             final String correctAnswer = displayNextQuestion(questionBank, questionIndex);
 
         final Button buttonNext = (Button)findViewById(R.id.buttonNext);
@@ -63,11 +64,11 @@ public class QuestionActivity extends AppCompatActivity {
                 RadioButton playerAnswer = (RadioButton)findViewById(group.getCheckedRadioButtonId());
                 CharSequence answerText = playerAnswer.getText();
                 if (correctAnswer == answerText) {
-                    Toast infoToast = Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT);
+                    Toast infoToast = Toast.makeText(getApplicationContext(), "Correct, " + player1.getPlayerName(), Toast.LENGTH_SHORT);
                     infoToast.show();
 
                 }else{
-                    Toast infoToast = Toast.makeText(getApplicationContext(), "Incorrect!", Toast.LENGTH_SHORT);
+                    Toast infoToast = Toast.makeText(getApplicationContext(), "Incorrect, " + player1.getPlayerName(), Toast.LENGTH_SHORT);
                     infoToast.show();
                 }
 
