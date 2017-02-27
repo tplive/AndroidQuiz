@@ -1,10 +1,12 @@
 package no.westerberg.androidquiz;
 
+import java.io.Serializable;
+
 /**
  * Created by Eline on 18.02.2017.
  */
 
-public class Player {
+public class Player implements Serializable {
     private int score;
     private String playerName;
     private String playerEmail;

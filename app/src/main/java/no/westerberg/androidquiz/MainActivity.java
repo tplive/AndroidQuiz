@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, QuestionActivity.class);
                 i.putExtra("questionBank", questionBank);
+                i.putExtra("player1", player1);
                 startActivity(i);
 
                 finish();
