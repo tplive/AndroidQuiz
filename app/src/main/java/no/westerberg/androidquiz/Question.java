@@ -62,5 +62,26 @@ public class Question implements Serializable {
         }
     }
 
+    public boolean checkAnswer(String answer) {
+        switch (this.getCorrect()) {
+            case 1:
+                return this.getOption1() == answer;
+            break;
+            case 2:
+                return this.getOption2() == answer;
+            break;
+            case 3:
+                return this.getOption3() == answer;
+            break;
+            case 4:
+                return this.getOption4() == answer;
+            break;
+            case default:
+                return false;
+            break;
+
+        }
+    }
+
 }
 
