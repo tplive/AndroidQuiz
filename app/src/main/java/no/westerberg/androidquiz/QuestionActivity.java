@@ -16,11 +16,14 @@ public class QuestionActivity extends AppCompatActivity {
     private static final String QINDEX = "qIndex";
     private int questionIndex;
     private TextView questionTextView;
+    private RadioGroup radioGroup;
     private RadioButton option1, option2, option3, option4;
 
     protected void displayNextQuestion(Question[] questionBank, int ind, Player player1) {
 
         if (ind <= questionBank.length-1) {
+            radioGroup = (RadioGroup) findViewById(R.id.optionRadioGroup);
+            radioGroup.clearCheck();
             questionTextView = (TextView) findViewById(R.id.questionTextView);
             questionTextView.setText(questionBank[ind].getQuestionText());
             option1 = (RadioButton) findViewById(R.id.btnOption1);
