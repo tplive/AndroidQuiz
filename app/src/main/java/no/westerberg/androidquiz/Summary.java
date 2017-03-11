@@ -28,6 +28,7 @@ public class Summary extends AppCompatActivity {
         }
         Intent i = getIntent();
         player1 = (Player) i.getSerializableExtra(PLAYER1);
+        questionIndex = i.getIntExtra(QINDEX, 0);
 
         displayScore(player1.getScore(), questionIndex);
         displayDescription();
