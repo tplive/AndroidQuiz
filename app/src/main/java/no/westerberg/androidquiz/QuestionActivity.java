@@ -14,6 +14,8 @@ import android.widget.Toast;
 public class QuestionActivity extends AppCompatActivity {
     private static final String TAG = "QuestionActivity";
     private static final String QINDEX = "qIndex";
+    private static final String PLAYER1 = "player1";
+    private Player player1;
     private int questionIndex;
     private TextView questionTextView;
     private RadioGroup radioGroup;
@@ -35,13 +37,14 @@ public class QuestionActivity extends AppCompatActivity {
             option4 = (RadioButton) findViewById(R.id.btnOption4);
             option4.setText(questionBank[ind].getOption4());
         }else {
-            loadSummaryPage(player1);
+            loadSummaryPage();
         }
     }
 
-    private void loadSummaryPage(Player player1) {
+    private void loadSummaryPage() {
         Intent i = new Intent(QuestionActivity.this, Summary.class);
-        i.putExtra("player1", player1);
+        i.putExtra(PLAYER1, player1);
+        i.putExtra(QINDEX, questionIndex);
         startActivity(i);
     }
 
@@ -70,7 +73,9 @@ public class QuestionActivity extends AppCompatActivity {
         }
         Intent i = getIntent();
         final Question[] questionBank = (Question[]) i.getSerializableExtra("questionBank");
-        final Player player1 = (Player) i.getSerializableExtra("player1");
+        player1 = (Player) i.getSerializableExtra(PLAYER1);
+
+
         displayNextQuestion(questionBank, questionIndex, player1);
 
         final Button buttonNext = (Button) findViewById(R.id.buttonNext);
