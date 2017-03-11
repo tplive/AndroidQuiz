@@ -2,4 +2,6 @@
     <string name="app_name">Android Quiz</string>
     <string name="_of_">of</string>
     <string name="try__again">Try Again</string>
+    <string name="name">Name</string>
+    <string name="start">Start</string>
 </resources>

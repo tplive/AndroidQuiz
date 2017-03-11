@@ -3,4 +3,6 @@
     <string name="app_name">Android Quiz</string>
     <string name="_of_">av</string>
     <string name="try__again">Try Again</string>
+    <string name="name">Navn</string>
+    <string name="start">Start</string>
 </resources>

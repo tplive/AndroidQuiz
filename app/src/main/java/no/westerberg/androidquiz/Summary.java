@@ -15,7 +15,7 @@ public class Summary extends AppCompatActivity {
 
     protected void displayScore(int score, int total) {
         TextView scoreText = (TextView) findViewById(R.id.textViewScore);
-        scoreText.setText(String.format("%s %s %s", score, getString(R.string._of_), total)); //TODO Viser ikke korrekt questionIndex
+        scoreText.setText(String.format("%s %s %s", score, getString(R.string._of_), total));
     }
 
     @Override
@@ -33,6 +33,22 @@ public class Summary extends AppCompatActivity {
 
     private void displayDescription() {
         TextView scoreDesc = (TextView) findViewById(R.id.textViewScoreDesc);
-        scoreDesc.setText(String.format("Player: %s\nEmail: %s\n", player1.getPlayerName(), player1.getPlayerEmail()));
+        scoreDesc.setText(getRating(player1.getScore(), questionIndex));
+    }
+
+    private String getRating(int score, int total) {
+        String returnText;
+        long quart = total/4;
+
+        if (total / score < quart) {
+            return "lowerQuart";
+        }else if (total / score <= quart * 2) {
+            return "secondQuart";
+        }else if (total / score <= quart * 3) {
+            return "thirdQuart";
+        }else {
+            return "fourthQuart";
+        }
+
     }
 }

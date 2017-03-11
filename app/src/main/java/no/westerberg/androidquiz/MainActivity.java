@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //player1.setPlayerName("Eline"); //TODO Hardcoded name for now
         startButton = (Button)findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener(){
             @Override
