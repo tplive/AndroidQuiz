@@ -27,22 +27,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        player1.setPlayerName("Eline"); //TODO Hardcoded name for now
+        //player1.setPlayerName("Eline"); //TODO Hardcoded name for now
         startButton = (Button)findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
                 TextView tvPlayerName = (TextView) findViewById(R.id.playerName);
-                if (tvPlayerName.getText() == null) {
-                    player1.setPlayerName((String) tvPlayerName.getText());
+                if (!tvPlayerName.getText().toString().equals("")) {
+                    player1.setPlayerName(tvPlayerName.getText().toString());
                 }else{
                     player1.setPlayerName("player1");
                 }
 
                 TextView tvPlayerEmail = (TextView) findViewById(R.id.playerEmail);
-                if(tvPlayerEmail == null) {
-                    player1.setPlayerEmail((String) tvPlayerEmail.getText());
+                if(!tvPlayerEmail.getText().toString().equals("")) {
+                    player1.setPlayerEmail(tvPlayerEmail.getText().toString());
                 }else{
                     player1.setPlayerEmail("no email");
                 }

@@ -23,9 +23,6 @@ public class Summary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
 
-        if (savedInstanceState != null) {
-            questionIndex = savedInstanceState.getInt(QINDEX);
-        }
         Intent i = getIntent();
         player1 = (Player) i.getSerializableExtra(PLAYER1);
         questionIndex = i.getIntExtra(QINDEX, 0);

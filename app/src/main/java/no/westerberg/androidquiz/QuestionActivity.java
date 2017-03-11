@@ -48,10 +48,14 @@ public class QuestionActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    protected CharSequence getPlayerAnswer(View v) {
+    protected String getPlayerAnswer() {
         RadioGroup group = (RadioGroup) findViewById(R.id.optionRadioGroup);
         RadioButton playerAnswer = (RadioButton) findViewById(group.getCheckedRadioButtonId());
-        return playerAnswer.getText();
+        if (group.getCheckedRadioButtonId() == -1) {
+            return null;
+        }else{
+            return playerAnswer.getText().toString();
+        }
     }
 
 
@@ -83,22 +87,27 @@ public class QuestionActivity extends AppCompatActivity {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO Make sure it doesn't crash if the player doesn't answer
-                String correctAnswer = questionBank[questionIndex].getCorrectText();
 
-                if (correctAnswer == getPlayerAnswer(view)) {
-                    Toast infoToast = Toast.makeText(getApplicationContext(), "Correct, " + player1.getPlayerName(), Toast.LENGTH_SHORT);
+                if(getPlayerAnswer() == null) {
+                    Toast infoToast = Toast.makeText(getApplicationContext(), "Click an answer, please", Toast.LENGTH_SHORT);
                     infoToast.show();
-                    player1.scorePoint();
-                    questionIndex++;
+                }else {
+                    //TODO Make sure it doesn't crash if the player doesn't answer
+                    String correctAnswer = questionBank[questionIndex].getCorrectText();
 
-                } else {
-                    Toast infoToast = Toast.makeText(getApplicationContext(), "Incorrect, " + player1.getPlayerName(), Toast.LENGTH_SHORT);
-                    infoToast.show();
-                    questionIndex++;
+                    if (correctAnswer == getPlayerAnswer()) {
+                        Toast infoToast = Toast.makeText(getApplicationContext(), "Correct, " + player1.getPlayerName(), Toast.LENGTH_SHORT);
+                        infoToast.show();
+                        player1.scorePoint();
+                        questionIndex++;
+
+                    } else {
+                        Toast infoToast = Toast.makeText(getApplicationContext(), "Incorrect, " + player1.getPlayerName(), Toast.LENGTH_SHORT);
+                        infoToast.show();
+                        questionIndex++;
+                    }
+                    displayNextQuestion(questionBank, questionIndex, player1);
                 }
-                displayNextQuestion(questionBank, questionIndex, player1);
-
 
             }
         });
