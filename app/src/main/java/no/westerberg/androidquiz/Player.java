@@ -34,4 +34,6 @@ public class Player implements Serializable {
     public void setPlayerEmail(String email) {
         this.playerEmail = email;
     }
+
+    public String getPlayerEmail() { return this.playerEmail;}
 }

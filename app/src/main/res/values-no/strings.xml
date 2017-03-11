@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Android Quiz</string>
-    <string name="_of_">of</string>
+    <string name="_of_">av</string>
     <string name="try__again">Try Again</string>
 </resources>
