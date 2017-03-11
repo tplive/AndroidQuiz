@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -31,6 +32,20 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
+                TextView tvPlayerName = (TextView) findViewById(R.id.playerName);
+                if (tvPlayerName.getText() == null) {
+                    player1.setPlayerName((String) tvPlayerName.getText());
+                }else{
+                    player1.setPlayerName("player1");
+                }
+
+                TextView tvPlayerEmail = (TextView) findViewById(R.id.playerEmail);
+                if(tvPlayerEmail == null) {
+                    player1.setPlayerEmail((String) tvPlayerEmail.getText());
+                }else{
+                    player1.setPlayerEmail("no email");
+                }
                 Intent i = new Intent(MainActivity.this, QuestionActivity.class);
                 i.putExtra("questionBank", questionBank);
                 i.putExtra("player1", player1);
