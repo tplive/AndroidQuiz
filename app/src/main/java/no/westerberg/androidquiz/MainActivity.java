@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        onSaveInstanceState(savedInstanceState);
-
         if (savedInstanceState != null) {
             player1.setPlayerName(savedInstanceState.getString("player1name", ""));
             player1.setPlayerEmail(savedInstanceState.getString("player1email", ""));

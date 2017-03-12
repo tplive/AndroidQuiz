@@ -40,7 +40,6 @@ public class Summary extends AppCompatActivity {
                 Intent i = new Intent(Summary.this, MainActivity.class);
                 i.putExtra("player1name", player1.getPlayerName());
                 i.putExtra("player1email", player1.getPlayerEmail());
-                savedInstanceState.putSerializable(PLAYER1, player1);
                 startActivity(i);
 
                 finish();

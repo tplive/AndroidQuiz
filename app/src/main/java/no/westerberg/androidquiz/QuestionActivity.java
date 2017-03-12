@@ -92,7 +92,6 @@ public class QuestionActivity extends AppCompatActivity {
                     Toast infoToast = Toast.makeText(getApplicationContext(), "Click an answer, please", Toast.LENGTH_SHORT);
                     infoToast.show();
                 }else {
-                    //TODO Make sure it doesn't crash if the player doesn't answer
                     String correctAnswer = questionBank[questionIndex].getCorrectText();
 
                     if (correctAnswer == getPlayerAnswer()) {
