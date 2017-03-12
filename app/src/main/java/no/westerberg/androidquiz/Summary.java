@@ -40,14 +40,18 @@ public class Summary extends AppCompatActivity {
         String returnText;
         long quart = total/4;
 
-        if (total / score < quart) {
-            return "lowerQuart";
+        if (score == total) {
+            return "Genialt! Alt rett! Android-superstjerne!";
+        }
+
+        if (total / score < quart * 3) {
+            return "Dette gikk ikke så bra, gjorde det vel?";
         }else if (total / score <= quart * 2) {
-            return "secondQuart";
+            return "Du må øve mer, du burde greie mer enn halvparten!";
         }else if (total / score <= quart * 3) {
-            return "thirdQuart";
+            return "Se der ja, det gikk riktig så bra!";
         }else {
-            return "fourthQuart";
+            return "Helt i øvre skikt! Veldig bra jobba!";
         }
 
     }
