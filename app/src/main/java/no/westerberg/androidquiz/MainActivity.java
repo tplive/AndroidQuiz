@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    Player player1 = new Player();
+    private static final String PLAYER1 = "player1";
+
 
     private Button startButton;
 
@@ -27,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (savedInstanceState != null) {
+            Intent i = getIntent();
+            Player player1 = (Player) i.getSerializableExtra(PLAYER1);
+        }else{
+            Player player1 = new Player();
+        }
         startButton = (Button)findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener(){
             @Override
