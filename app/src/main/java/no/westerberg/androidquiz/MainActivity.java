@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String PLAYER1 = "player1";
@@ -25,12 +28,17 @@ public class MainActivity extends AppCompatActivity {
 
     };
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "onCreate");
         setContentView(R.layout.activity_main);
 
+        // Hvis vi kommer fra Summary (har klikket "prøv igjen", vil vi ha med brukernavn og
+        // epost som var skrevet inn fra før.
+        // TODO Virker enklest å ta med player1-objektet, istedet for strings?
         Intent i = getIntent();
         player1.setPlayerName(i.getStringExtra("player1name"));
         player1.setPlayerEmail(i.getStringExtra("player1email"));
@@ -40,10 +48,8 @@ public class MainActivity extends AppCompatActivity {
         TextView tvPlayerEmail = (TextView) findViewById(R.id.playerEmail);
         tvPlayerEmail.setText(player1.getPlayerEmail());
 
-        if (savedInstanceState != null) {
-
-
-        }
+        // Stokker rekkefølgen på spørsmålene:
+        Collections.shuffle(Arrays.asList(questionBank));
 
         // Kode som definerer onClick metode for startknappen.
         // Leser UI og setter spillerens navn / epost hvis hen har skrevet det inn,
@@ -53,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                //Sjekk om spilleren har tastet inn navn/epost, og bruk evt det.
+                // Hvis ikke, sett player1/no email som standardverdier.
                 TextView tvPlayerName = (TextView) findViewById(R.id.playerName);
                 if (!tvPlayerName.getText().toString().equals("")) {
                     player1.setPlayerName(tvPlayerName.getText().toString());
@@ -66,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     player1.setPlayerEmail("no email");
                 }
+                //Ta med spørsmålene og player1 objektet til neste activity
                 Intent i = new Intent(MainActivity.this, QuestionActivity.class);
                 i.putExtra("questionBank", questionBank);
                 i.putExtra(PLAYER1, player1);
@@ -77,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Test - ta vare på player1 i savedInstanceState
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
