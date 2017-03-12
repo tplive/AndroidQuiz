@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String PLAYER1 = "player1";
-
+    Player player1 = new Player();
 
     private Button startButton;
 
@@ -24,17 +24,28 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        onSaveInstanceState(savedInstanceState);
+
         if (savedInstanceState != null) {
-            Intent i = getIntent();
-            Player player1 = (Player) i.getSerializableExtra(PLAYER1);
-        }else{
-            Player player1 = new Player();
+            player1.setPlayerName(savedInstanceState.getString("player1name", ""));
+            player1.setPlayerEmail(savedInstanceState.getString("player1email", ""));
+
+            TextView tvPlayerName = (TextView) findViewById(R.id.playerName);
+            tvPlayerName.setText(player1.getPlayerName());
+            TextView tvPlayerEmail = (TextView) findViewById(R.id.playerEmail);
+            tvPlayerEmail.setText(player1.getPlayerEmail());
+
         }
+
+        // Kode som definerer onClick metode for startknappen.
+        // Leser UI og setter spillerens navn / epost hvis hen har skrevet det inn,
+        // default ellers. Launcher deretter QuestionActivity.
         startButton = (Button)findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -55,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Intent i = new Intent(MainActivity.this, QuestionActivity.class);
                 i.putExtra("questionBank", questionBank);
-                i.putExtra("player1", player1);
+                i.putExtra(PLAYER1, player1);
                 startActivity(i);
 
                 finish();

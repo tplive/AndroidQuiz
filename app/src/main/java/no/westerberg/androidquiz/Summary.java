@@ -21,7 +21,7 @@ public class Summary extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
 
@@ -38,7 +38,9 @@ public class Summary extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent i = new Intent(Summary.this, MainActivity.class);
-                i.putExtra("player1", player1);
+                i.putExtra("player1name", player1.getPlayerName());
+                i.putExtra("player1email", player1.getPlayerEmail());
+                savedInstanceState.putSerializable(PLAYER1, player1);
                 startActivity(i);
 
                 finish();
