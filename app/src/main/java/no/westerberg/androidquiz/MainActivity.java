@@ -20,12 +20,16 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO Get questions from json
     Question[] questionBank = new Question[] {
-            new Question("Hva er kodenavnet på Android 5.0?", "Cupcake", "Honeycomb", "Lollipop", "Nougat", 3),
-            new Question("Hvem utviklet opprinnelig Android operativsystemet?", "Google", "Apple", "Microsoft", "Android Inc", 4),
-            new Question("Hvilket år ble Jelly Bean lansert?", "2012", "2002", "2009", "2011", 1),
-            new Question("Hvem av disse var ikke med på grunnleggingen av Android Inc?", "Andy Rubin", "Chris White", "Rich Miner", "Bill Gates", 4),
-            new Question("En av disse leverandørene bruker Android som sitt operativsystem. Hvilken?", "Apple", "Samsung", "Microsoft", "Nokia", 2)
-
+        new Question("Hva er kodenavnet på Android 5.0?", "Cupcake", "Honeycomb", "Lollipop", "Nougat", 3),
+        new Question("Hvem utviklet opprinnelig Android operativsystemet?", "Google", "Apple", "Microsoft", "Android Inc", 4),
+        new Question("Hvilket år ble Jelly Bean lansert?", "2012", "2002", "2009", "2011", 1),
+        new Question("Hvem av disse var ikke med på grunnleggingen av Android Inc?", "Andy Rubin", "Chris White", "Rich Miner", "Bill Gates", 4),
+        new Question("En av disse leverandørene bruker Android som sitt mobil-operativsystem. Hvilken?", "Apple", "Samsung", "Microsoft", "Nokia", 2),
+        new Question("Hva står DDMS for?", "Dalvik Memory Server", "Device Memory Server", "Dalvik Monitoring Services", "Dalvik Debug Monitor Services", 4),
+        new Question("Hvordan kan man finne et Fragment i Android?", "FragmentManager.findFragmentByID()", "getContext.findFragmentByID()", "findFragmentByID()", "findByID()", 1),
+        new Question("Hva er en \"Splash screen\" i Android?", "Initiell aktivitet for en applikasjon", "Initiell tjeneste for en applikasjon", "Initiell skjerm for en applikasjon", "Initiell metode for en applikasjon",  3),
+        new Question("Hvilken tillatelse må man ha for å vise lokasjon i Android?", "GPRS tillatelse", "ACCESS_FINE og ACCESS_COARSE tillatelse", "Internett tillatelse", "WIFI tillatelse", 2),
+        new Question("Hvilke størrelser støttes?", "Android støtter alle størrelser", "Android støtter ikke alle størrelser", "Android støtter small, normal, large og extra-large", "Størrelse defineres ikke i Android", 3)
     };
 
 
