@@ -1,4 +1,4 @@
-package no.westerberg.androidquiz;
+package no.westerberg.qvidahlquiz;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

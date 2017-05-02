@@ -1,4 +1,4 @@
-package no.westerberg.androidquiz;
+package no.westerberg.qvidahlquiz;
 
 import java.io.Serializable;
 
